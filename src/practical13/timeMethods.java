@@ -40,6 +40,17 @@ public class timeMethods {
         for (int i = 0; i < 30; i++) {
             testKeys[i] = rand.nextInt(N) + 1; //Keys from 1 to N
         }
+         runTime = 0;
+        runTime2 = 0;
+
+        for(repetition = 0; repetition < repetitions; repetition++) {
+            start = System.currentTimeMillis();
+
+            //Call both procedures to time them together 
+            for (int i = 0; i < n; i++) {
+                linearSearch(records, testKeys[i]);
+                binarySearch(sortedRecords, testKeys[i]);
+            }
         
 
         
