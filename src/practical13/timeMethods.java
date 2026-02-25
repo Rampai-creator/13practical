@@ -31,6 +31,15 @@ public class timeMethods {
                 validNodes.add(records[i]);
             }
         }
+        Collections.sort(validNodes);
+        sortedRecords = validNodes.toArray(new Node[0]);
+
+        //Generate 30 random keys for testing
+        int[] testKeys = new int[30];
+        Random rand = new Random();
+        for (int i = 0; i < 30; i++) {
+            testKeys[i] = rand.nextInt(N) + 1; //Keys from 1 to N
+        }
         
 
         
