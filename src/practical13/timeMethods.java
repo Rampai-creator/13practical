@@ -104,6 +104,53 @@ public class timeMethods {
                     }
                 }
             }
+            reader.close();
+            System.out.println("Loaded " + count + " records from " + filename);
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + filename);
+            System.err.println("Creating dummy data for testing...");
+            //Creating dummy data if file not found for testing
+            for (int i = 1; i <= 1000; i++) {
+                records[i] = new Node(i, "Dummy data for key " + i);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
+    //Linear search implementation
+    static String linearSearch(Node[] array, int key) {
+        // Search through the array (starting from index 1 as per our storage)
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] != null && array[i].key == key) {
+                return array[i].data;
+            }
+        }
+        return null; //Not found
+    }
+
+    //Binary search implementation 
+    static String binarySearch(Node[] array, int key) {
+        int left = 0;//assumes sorted array
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (array[mid].key == key) {
+                return array[mid].data;
+            }
+
+            if (array[mid].key < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return null; //Not found
+    }
+}
         
 
         
