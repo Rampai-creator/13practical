@@ -51,6 +51,59 @@ public class timeMethods {
                 linearSearch(records, testKeys[i]);
                 binarySearch(sortedRecords, testKeys[i]);
             }
+            finish = System.currentTimeMillis();
+
+            time = (double)(finish - start);
+            runTime += time;
+            runTime2 += (time * time);
+        }
+
+        double aveRuntime = runTime/repetitions;
+        double stdDeviation = Math.sqrt((runTime2 - repetitions*aveRuntime*aveRuntime)/(repetitions-1));
+
+        //Printing statistics 
+        System.out.printf("\n\n\fStatistics\n");
+        System.out.println("________________________________________________");
+        System.out.println("Total time = " + runTime/1000 + "s.");
+        System.out.println("Total time\u00b2 = " + runTime2);
+        System.out.println("Average time = " + fiveD.format(aveRuntime/1000)
+                + "s. " + '\u00B1' + " " + fourD.format(stdDeviation) + "ms.");
+        System.out.println("Standard deviation = " + fourD.format(stdDeviation));
+        System.out.println("n = " + n);
+        System.out.println("Average time / run = " + fiveD.format(aveRuntime/n*1000)
+                + '\u00B5' + "s. ");
+        System.out.println("Repetitions = " + repetitions);
+        System.out.println("________________________________________________");
+        System.out.println();
+        System.out.println();
+    }
+
+    //Method to load data from ulysses.numbered
+    static void loadData(String filename) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            int count = 0;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+
+                //Parse key and data
+                String[] parts = line.split("\\s+", 2);
+                if (parts.length >= 2) {
+                    try {
+                        int key = Integer.parseInt(parts[0]);
+                        String data = parts[1];
+                        if (key >= 1 && key <= N) {
+                            records[key] = new Node(key, data);
+                            count++;
+                        }
+                    } catch (NumberFormatException e) {
+                        //Skiping lines that don't start with a number
+                    }
+                }
+            }
         
 
         
