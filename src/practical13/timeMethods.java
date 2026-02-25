@@ -23,4 +23,14 @@ public class timeMethods {
         //Loading data from file
         loadData("ulysses.numbered");
 
+        sortedRecords = records.clone();
+        //Removing null entries and sort
+        ArrayList<Node> validNodes = new ArrayList<Node>();
+        for (int i = 1; i <= N; i++) {
+            if (records[i] != null) {
+                validNodes.add(records[i]);
+            }
+        }
+        
+
         
