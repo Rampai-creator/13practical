@@ -20,4 +20,7 @@ public class timeMethods {
         int n = 30; //Number of keys to search 
         int repetition, repetitions = 30;
 
+        //Loading data from file
+        loadData("ulysses.numbered");
+
         
