@@ -151,6 +151,20 @@ public class timeMethods {
         return null; //Not found
     }
 }
+//Node class to store key data pairs
+class Node implements Comparable<Node> {
+    int key;
+    String data;
+
+    Node(int k, String d) {
+        key = k;
+        data = d;
+    }
+
+    public int compareTo(Node other) {
+        return Integer.compare(this.key, other.key);
+    }
+}
         
 
         
